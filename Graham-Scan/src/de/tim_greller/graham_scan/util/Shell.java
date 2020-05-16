@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tim_greller.convex_hull.util;
+package de.tim_greller.graham_scan.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -98,6 +98,14 @@ public final class Shell {
             printError("The value has to be an integer.");
             return Optional.empty();
         }
+    }
+    
+    /**
+     * Prints a help text about the usage of the Shell including all
+     * supported commands with their syntax and a description.
+     */
+    private static void printHelp() {
+        System.out.println("");
     }
     
     /**

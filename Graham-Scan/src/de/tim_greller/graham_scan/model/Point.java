@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tim_greller.convex_hull.model;
+package de.tim_greller.graham_scan.model;
 
 /**
  * Represents a point in a two-dimensional integer coordinate system.
