@@ -6,7 +6,7 @@ package de.tim_greller.convex_hull.model;
 /**
  * Represents a point in a two-dimensional integer coordinate system.
  */
-public class Point {
+public class Point implements Comparable<Point> {
 
     /** The x and y coordinates of the point. */
     private int x, y;
@@ -38,5 +38,20 @@ public class Point {
      */
     public int getY() {
         return y;
+    }
+
+    @Override
+    public int compareTo(Point p) {
+        int deltaX = getX() - p.getX();
+        if (deltaX == 0) {
+            return getY() - p.getY();
+        } else {
+            return deltaX;
+        }
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Point && compareTo((Point) o) == 0;
     }
 }
