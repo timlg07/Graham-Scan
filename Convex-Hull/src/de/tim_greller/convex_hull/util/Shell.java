@@ -6,6 +6,7 @@ package de.tim_greller.convex_hull.util;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Optional;
 
 /**
  * 
@@ -80,6 +81,22 @@ public final class Shell {
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
+        }
+    }
+    
+    
+    /**
+     * Tries to parse a String to an Integer.
+     *  
+     * @param value The String that should contain a numeric value.
+     * @return An Optional containing the Integer if parsing was successful.
+     */
+    private static Optional<Integer> parseInt(String value) {
+        try {
+            return Optional.of(Integer.valueOf(value));
+        } catch (NumberFormatException e) {
+            printError("The value has to be an integer.");
+            return Optional.empty();
         }
     }
     
