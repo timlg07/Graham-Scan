@@ -25,6 +25,7 @@ public final class Shell {
     /**
      * The main method processes the input received on System.in (standard 
      * input).
+     * 
      * @param args The arguments are ignored. All input must be sent per stdin.
      * @throws IOException If an I/O error occurs.
      */
@@ -48,7 +49,7 @@ public final class Shell {
      * @throws IOException If an I/O error occurs.
      */
     private static void processLine(BufferedReader stdin) throws IOException {
-        System.out.print("trie> ");
+        System.out.print("gs> ");
         String input = stdin.readLine();
 
         // exit program if EOF (end of file) is reached
