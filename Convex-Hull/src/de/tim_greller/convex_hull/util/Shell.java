@@ -78,7 +78,19 @@ public final class Shell {
         
         switch(cmd) {
         default:
+            printError("Unknown command \"" + cmd + "\"");
             break;
         }
+    }
+    
+    /**
+     * Prints an error text accepted by the <i>Praktomat</i> containing the 
+     * given message.
+     * 
+     * @param msg The message which should describe the error.
+     */
+    private static void printError(String msg) {
+        System.out.println("Error! " + msg);
+        System.out.println("Enter 'help' to display the syntax.");
     }
 }
