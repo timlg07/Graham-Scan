@@ -54,4 +54,18 @@ public class Point implements Comparable<Point> {
     public boolean equals(Object o) {
         return o instanceof Point && compareTo((Point) o) == 0;
     }
+    
+    /**
+     * Calculates if the point {@code p} is Left of the vector from {@code this}
+     * to {@code q}.
+     * 
+     * @param p The point which is either left, right or on the line.
+     * @param q The point forming the line with this.
+     * @return Whether {@code p} is left of the line or not.
+     */
+    public boolean leftOf(Point p, Point q) {
+        return ( (q.getX() - getX()) * (p.getY() - getY()) 
+               - (q.getY() - getY()) * (p.getX() - getX())
+               ) > 0;
+    }
 }
