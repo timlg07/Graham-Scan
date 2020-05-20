@@ -55,6 +55,15 @@ public class Point implements Comparable<Point> {
         return o instanceof Point && compareTo((Point) o) == 0;
     }
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + x;
+        result = prime * result + y;
+        return result;
+    }
+
     /**
      * Calculates if the point {@code p} is Left of the vector from {@code this}
      * to {@code q}.
