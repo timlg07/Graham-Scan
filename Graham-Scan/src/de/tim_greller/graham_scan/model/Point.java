@@ -57,11 +57,10 @@ public class Point implements Comparable<Point> {
     
     @Override
     public int hashCode() {
+        // Avoid losing information due to overflow while still using shifts for
+        // better performance is possible with prime = 31: x * 31 == x << 5 - x
         final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
-        return result;
+        return (prime + x) * prime + y;
     }
 
     /**
