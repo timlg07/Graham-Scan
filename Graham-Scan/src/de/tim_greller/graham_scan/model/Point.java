@@ -50,11 +50,13 @@ public class Point implements Comparable<Point> {
         }
     }
     
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         return o instanceof Point && compareTo((Point) o) == 0;
     }
     
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         // Avoid losing information due to overflow while still using shifts for

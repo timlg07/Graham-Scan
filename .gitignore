@@ -27,6 +27,7 @@ hs_err_pid*
 # eclipse gitignore:
 
 .metadata
+doc/
 bin/
 tmp/
 *.tmp
