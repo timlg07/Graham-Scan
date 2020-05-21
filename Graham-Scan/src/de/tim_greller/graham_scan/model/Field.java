@@ -32,6 +32,7 @@ public class Field {
         return points.remove(p);
     }
     
+    /** Sorts the field and returns its string representation. */
     @Override
     public String toString() {
         sortPoints();
