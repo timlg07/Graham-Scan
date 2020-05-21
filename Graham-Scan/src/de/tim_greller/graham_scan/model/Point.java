@@ -64,6 +64,16 @@ public class Point implements Comparable<Point> {
         final int prime = 31;
         return (prime + x) * prime + y;
     }
+    
+    /**
+     * Generates the string representation in the format (x|y).
+     * 
+     * @return The String representation of this point.
+     */
+    @Override
+    public String toString() {
+        return "(" + getX() + "|" + getY() + ")";
+    }
 
     /**
      * Calculates if the point {@code p} is Left of the vector from {@code this}
