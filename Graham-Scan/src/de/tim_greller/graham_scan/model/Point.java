@@ -71,11 +71,12 @@ public class Point implements Comparable<Point> {
      * 
      * @param p The point which is either left, right or on the line.
      * @param q The point forming the line with this.
-     * @return Whether {@code p} is left of the line or not.
+     * @return A value greater than zero if {@code p} is left of the line, zero 
+     *         if it is on the line and a negative value if it is right of the 
+     *         line.
      */
-    public boolean leftOf(Point p, Point q) {
+    public int leftOf(Point p, Point q) {
         return ( (q.getX() - getX()) * (p.getY() - getY()) 
-               - (q.getY() - getY()) * (p.getX() - getX())
-               ) > 0;
+               - (q.getY() - getY()) * (p.getX() - getX()));
     }
 }
