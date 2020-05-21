@@ -10,5 +10,25 @@ import java.util.List;
 public class Field {
     
     private List<Point> points = new ArrayList<Point>();
+    private boolean isSorted = true;
     
+    /**
+     * Appends a {@link Point} to the field.
+     * 
+     * @param p The new {@link Point}.
+     * @return {@code true} if {@code p} was added successful.
+     */
+    public boolean add(Point p) {
+        isSorted = false;
+        return points.add(p);
+    }
+    
+    /**
+     * Removes a {@link Point} from the field if present.
+     * @param p The {@link Point} to remove.
+     * @return {@code true} if {@code p} was removed successful.
+     */
+    public boolean remove(Point p) {
+        return points.remove(p);
+    }
 }
