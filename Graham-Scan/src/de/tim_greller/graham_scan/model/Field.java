@@ -31,4 +31,18 @@ public class Field {
     public boolean remove(Point p) {
         return points.remove(p);
     }
+    
+    @Override
+    public String toString() {
+        sortPoints();
+        return points.toString();
+    }
+    
+    /** Sorts the points if they are not already sorted. */
+    private void sortPoints() {
+        if (!isSorted) {
+            Collections.sort(points);
+            isSorted = true;
+        }
+    }
 }
