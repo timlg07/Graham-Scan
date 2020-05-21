@@ -3,18 +3,18 @@ package de.tim_greller.graham_scan.model;
 import java.util.Comparator;
 
 /**
- * Compares two points based on their position relative to the point p0.
+ * Compares two points based on their position relative to the point reference.
  */
 public class AngleDistComparator implements Comparator<Point> {
     
-    private Point p0;
+    private Point reference;
     
     /**
      * A Comparator for the given {@link Point}.
-     * @param p0 The point other points should get compared with.
+     * @param reference The point other points should get compared with.
      */
-    public AngleDistComparator(Point p0) {
-        this.p0 = p0;
+    public AngleDistComparator(Point reference) {
+        this.reference = reference;
     }
     
     /**
@@ -31,10 +31,11 @@ public class AngleDistComparator implements Comparator<Point> {
      *         else.
      */
     public int compare(Point p, Point q) {
-        int result = p0.leftOf(p, q);
+        int result = reference.leftOf(p, q);
         // All points on one line => Same angle -> Compare distance.
         if (result == 0) {
-            result = (int)(calculateDistance(p0, p) - calculateDistance(p0, q));
+            result = (int) (calculateDistance(reference, p) 
+                            - calculateDistance(reference, q));
         }
         return result;
     }
