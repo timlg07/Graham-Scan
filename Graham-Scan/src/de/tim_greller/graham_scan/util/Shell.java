@@ -93,6 +93,10 @@ public final class Shell {
             printHelp();
             break;
 
+        case "quit":
+            continueExecution = false;
+            break;
+
         case "add":
             addPoint(tokenizedInput);
             break;
