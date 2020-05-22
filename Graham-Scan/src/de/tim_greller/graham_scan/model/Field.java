@@ -118,8 +118,7 @@ public class Field {
                 res.add(orderedPoints.get(i));
             }
         }
-        // Last point is always included.
-        res.add(orderedPoints.get(lastIndex));
+        res.add(orderedPoints.get(lastIndex)); // Last point is always included.
 
         // End result:
         Deque<Point> stack = new LinkedList<Point>();
@@ -127,7 +126,7 @@ public class Field {
 
         for (Point point : res) {
             while (stack.size() > 1 
-                    && point.leftOf(stack.peek(), peekNextToTop(stack)) < 0) {
+                    && point.leftOf(stack.peek(), peekNextToTop(stack)) <= 0) {
                 stack.pop();
             }
             stack.push(point);
