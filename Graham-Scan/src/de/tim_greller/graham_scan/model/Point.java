@@ -7,7 +7,7 @@ public class Point implements Comparable<Point> {
 
     /** The x and y coordinates of the point. */
     private int x, y;
-    
+
     /**
      * Creates a new Point with the given position.
      * 
@@ -18,7 +18,7 @@ public class Point implements Comparable<Point> {
         this.x = x;
         this.y = y;
     }
-    
+
     /**
      * Returns the x coordinate.
      * 
@@ -46,13 +46,13 @@ public class Point implements Comparable<Point> {
             return deltaX;
         }
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         return o instanceof Point && compareTo((Point) o) == 0;
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
@@ -61,7 +61,7 @@ public class Point implements Comparable<Point> {
         final int prime = 31;
         return (prime + x) * prime + y;
     }
-    
+
     /** Generates the string representation in the format {@code (x, y)}. */
     @Override
     public String toString() {
@@ -79,10 +79,10 @@ public class Point implements Comparable<Point> {
      *         line.
      */
     public int leftOf(Point p, Point q) {
-        return ( (q.getX() - getX()) * (p.getY() - getY()) 
-               - (q.getY() - getY()) * (p.getX() - getX()));
+        return (q.getX() - getX()) * (p.getY() - getY()) 
+             - (q.getY() - getY()) * (p.getX() - getX());
     }
-    
+
     /**
      * Calculates the distance between this and another {@link Point}.
      * 
