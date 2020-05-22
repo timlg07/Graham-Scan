@@ -118,9 +118,13 @@ public final class Shell {
      * @param tokenizedInput The full input split in its tokens.
      */
     private static void addPoint(String[] tokenizedInput) {
-        Optional<Point> pointToAdd = parseParamsToPoint(tokenizedInput);
-        if (pointToAdd.isPresent()) {
-            field.add(pointToAdd.get());
+        Optional<Point> parsedPoint = parseParamsToPoint(tokenizedInput);
+        if (parsedPoint.isPresent()) {
+            Point pointToAdd = parsedPoint.get();
+            boolean success = field.add(pointToAdd);
+            if (!success) {
+                printError("The Point " + pointToAdd + " was already added.");
+            }
         }
     }
     
