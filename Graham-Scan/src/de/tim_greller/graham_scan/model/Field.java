@@ -13,14 +13,14 @@ public class Field {
     private boolean isSorted = true;
     
     /**
-     * Appends a {@link Point} to the field.
+     * Appends a {@link Point} to the field if the point is not already in it.
      * 
      * @param p The new {@link Point}.
      * @return {@code true} if {@code p} was added successful.
      */
     public boolean add(Point p) {
         isSorted = false;
-        return points.add(p);
+        return !points.contains(p) && points.add(p);
     }
     
     /**
