@@ -10,13 +10,13 @@ import java.util.List;
  *
  */
 public class Field {
-    
+
     /** The current set of points */
     private List<Point> points = new ArrayList<Point>();
-    
+
     /** The last calculated convex hull */
     private List<Point> convex = new ArrayList<Point>();
-    
+
     /** Indicates if {@code points} has been modified since it was sorted. */
     private boolean isSorted = true;
     
@@ -25,8 +25,7 @@ public class Field {
      * hull was calculated.
      */
     private boolean isConvexUpToDate = true;
-    
-    
+
     /**
      * Appends a {@link Point} to the field if the point is not already in it.
      * 
@@ -38,9 +37,10 @@ public class Field {
         isConvexUpToDate = false;
         return !points.contains(p) && points.add(p);
     }
-    
+
     /**
      * Removes a {@link Point} from the field if present.
+     * 
      * @param p The {@link Point} to remove.
      * @return {@code true} if {@code p} was removed successful.
      */
@@ -48,14 +48,14 @@ public class Field {
         isConvexUpToDate = false;
         return points.remove(p);
     }
-    
+
     /** Sorts the field and returns its string representation. */
     @Override
     public String toString() {
         sortPoints();
         return points.toString();
     }
-    
+
     /** Sorts the points if they are not already sorted. */
     private void sortPoints() {
         if (!isSorted) {
@@ -63,7 +63,7 @@ public class Field {
             isSorted = true;
         }
     }
-    
+
     /**
      * Calculates the convex hull of all {@link Point}s stored in this 
      * {@link Field} using the graham scan algorithm. <br> If the set of points 
@@ -91,7 +91,7 @@ public class Field {
         // Using the Constructor is sufficient because each Point is immutable.
         return new ArrayList<Point>(convex);
     }
-    
+
     /**
      * Implementation of the graham scan algorithm. <br>
      * Preconditions: <ul>
@@ -108,7 +108,7 @@ public class Field {
         List<Point> orderedPoints = new ArrayList<Point>(points);
         Point p0 = orderedPoints.remove(0);
         Collections.sort(orderedPoints, new AngleDistComparator(p0));
-        
+
         // List that does not contain two points collinear with p0.
         List<Point> res = new LinkedList<Point>();
         int lastIndex = orderedPoints.size() - 1;
@@ -120,11 +120,11 @@ public class Field {
         }
         // Last point is always included.
         res.add(orderedPoints.get(lastIndex));
-        
+
         // End result:
         Deque<Point> stack = new LinkedList<Point>();
         stack.push(p0);
-        
+
         for (Point point : res) {
             while (stack.size() > 1 
                     && point.leftOf(stack.peek(), peekNextToTop(stack)) < 0) {
@@ -132,16 +132,16 @@ public class Field {
             }
             stack.push(point);
         }
-        
+
         Collections.reverse((LinkedList<Point>) stack);
         return (LinkedList<Point>) stack;
     }
-    
+
     /**
-     * Returns the second element from the top of a {@link Deque} stack without 
+     * Returns the second element from the top of a {@link Deque} stack without
      * modifying it.
      * 
-     * @param <T> The type of the elements stored in {@code stack}.
+     * @param <T>   The type of the elements stored in {@code stack}.
      * @param stack The {@link Deque} whose second element should be returned.
      * @return The second element of {@code stack}.
      */
