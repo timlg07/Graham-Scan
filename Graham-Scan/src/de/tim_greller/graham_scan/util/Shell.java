@@ -88,7 +88,11 @@ public final class Shell {
         case "new":
             field = new Field();
             break;
-            
+
+        case "help":
+            printHelp();
+            break;
+
         case "add":
             addPoint(tokenizedInput);
             break;
