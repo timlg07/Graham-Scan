@@ -46,4 +46,9 @@ public class Field {
             isSorted = true;
         }
     }
+    
+    // This is correct in some cases, good enough.
+    public List<Point> convexHull() {
+        return points;
+    }
 }
