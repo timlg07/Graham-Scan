@@ -19,8 +19,8 @@ public class AngleDistComparator implements Comparator<Point> {
     
     /**
      * Compares two points {@code p} and {@code q} according to the angle of
-     * their vectors to p0. If the angle is equal, the vectors get compared by
-     * size.
+     * their vectors to the reference point. If the angle is equal, the vectors 
+     * are compared by size.
      * 
      * @param p The first {@link Point}.
      * @param q The second {@link Point}.
