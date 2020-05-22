@@ -34,22 +34,8 @@ public class AngleDistComparator implements Comparator<Point> {
         int result = reference.leftOf(p, q);
         // All points on one line => Same angle -> Compare distance.
         if (result == 0) {
-            result = (int) (calculateDistance(reference, p) 
-                            - calculateDistance(reference, q));
+            result = (int) (reference.distanceTo(p) - reference.distanceTo(q));
         }
         return result;
-    }
-    
-    /**
-     * Calculates the distance between two {@link Point}s.
-     * 
-     * @param a The first {@link Point}.
-     * @param b The second {@link Point}.
-     * @return The magnitude of the vector from {@code a} to {@code b}.
-     */
-    private double calculateDistance(Point a, Point b) {
-        int vectorX = b.getX() - a.getX();
-        int vectorY = b.getY() - a.getY();
-        return Math.sqrt(vectorX * vectorX + vectorY * vectorY);
     }
 }

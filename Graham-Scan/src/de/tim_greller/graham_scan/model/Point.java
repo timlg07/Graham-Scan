@@ -85,4 +85,16 @@ public class Point implements Comparable<Point> {
         return ( (q.getX() - getX()) * (p.getY() - getY()) 
                - (q.getY() - getY()) * (p.getX() - getX()));
     }
+    
+    /**
+     * Calculates the distance between this and another {@link Point}.
+     * 
+     * @param p The second {@link Point}.
+     * @return The magnitude of the vector from {@code this} to {@code p}.
+     */
+    public double distanceTo(Point p) {
+        int vectorX = p.getX() - getX();
+        int vectorY = p.getY() - getY();
+        return Math.sqrt(vectorX * vectorX + vectorY * vectorY);
+    }
 }
