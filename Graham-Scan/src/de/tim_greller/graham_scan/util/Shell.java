@@ -175,7 +175,7 @@ public final class Shell {
     }
     
     /**
-     * Prints an error text starting with {@code "Error!"} and containing the 
+     * Prints an error text starting with {@code "Error!"} followed by the 
      * given message.
      * 
      * @param msg The message describing the error.
