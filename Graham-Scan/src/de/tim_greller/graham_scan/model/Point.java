@@ -65,10 +65,10 @@ public class Point implements Comparable<Point> {
         return (prime + x) * prime + y;
     }
     
-    /** Generates the string representation in the format {@code (x|y)}. */
+    /** Generates the string representation in the format {@code (x, y)}. */
     @Override
     public String toString() {
-        return "(" + getX() + "|" + getY() + ")";
+        return "(" + getX() + ", " + getY() + ")";
     }
 
     /**
