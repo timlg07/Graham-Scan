@@ -85,6 +85,10 @@ public final class Shell {
         String cmd = tokenizedInput[0].toLowerCase();
         
         switch(cmd) {
+        case "new":
+            field = new Field();
+            break;
+            
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
