@@ -105,15 +105,20 @@ public final class Shell {
             addPoint(tokenizedInput);
             break;
             
+        case "remove":
+            removePoint(tokenizedInput);
+            break;
+            
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
         }
     }
-    
+
     /**
      * Tries to parse the input and if successful adds a new {@link Point} to 
-     * the field.
+     * the field. Prints an error when parsing fails or adding the point would
+     * produce a duplicate in the field.
      * 
      * @param tokenizedInput The full input split in its tokens.
      */
@@ -124,6 +129,24 @@ public final class Shell {
             boolean success = field.add(pointToAdd);
             if (!success) {
                 printError("The Point " + pointToAdd + " was already added.");
+            }
+        }
+    }
+    
+    /**
+     * Tries to parse the input and if successful tries to remove the 
+     * {@link Point} from the field. Prints an error when parsing or removing
+     * fails.
+     * 
+     * @param tokenizedInput The full input split in its tokens.
+     */
+    private static void removePoint(String[] tokenizedInput) {
+        Optional<Point> parsedPoint = parseParamsToPoint(tokenizedInput);
+        if (parsedPoint.isPresent()) {
+            Point pointToRemove = parsedPoint.get();
+            boolean success = field.remove(pointToRemove);
+            if (!success) {
+                printError("The Point " + pointToRemove + " was not found.");
             }
         }
     }
