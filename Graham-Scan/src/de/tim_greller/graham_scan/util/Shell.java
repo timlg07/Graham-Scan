@@ -1,5 +1,5 @@
 /**
- * 
+ * The utility package handling I/O.
  */
 package de.tim_greller.graham_scan.util;
 
@@ -12,22 +12,24 @@ import de.tim_greller.graham_scan.model.Field;
 import de.tim_greller.graham_scan.model.Point;
 
 /**
- * 
+ * The graham scan shell enables direct user communication to perform operations 
+ * on a {@link Field} used to execute the graham scan with a set of points.
  */
 public final class Shell {
 
-    /** 
+    /**
      * Holds the current information about whether the program should continue
      * execution or terminate after the current line of input is processed.
      */
     private static boolean continueExecution = true;
-    
+
     /** The field storing all points and calculating the convex hull. */
     private static Field field = new Field();
-    
+
     /** Private constructor to prevent instantiation. */
     private Shell() { }
     
+
     /**
      * The main method processes the input received on System.in (standard 
      * input).
@@ -83,8 +85,8 @@ public final class Shell {
         // splitting an empty string returns an array containing an empty
         // string.
         String cmd = tokenizedInput[0].toLowerCase();
-        
-        switch(cmd) {
+
+        switch (cmd) {
         case "new":
             field = new Field();
             break;
@@ -96,23 +98,23 @@ public final class Shell {
         case "quit":
             continueExecution = false;
             break;
-            
+
         case "print":
             System.out.println(field);
             break;
-            
+
         case "add":
             addPoint(tokenizedInput);
             break;
-            
+
         case "remove":
             removePoint(tokenizedInput);
             break;
-            
+
         case "convex":
             System.out.println(field.convexHull());
             break;
-            
+
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
@@ -136,7 +138,7 @@ public final class Shell {
             }
         }
     }
-    
+
     /**
      * Tries to parse the input and if successful tries to remove the 
      * {@link Point} from the field. Prints an error when parsing or removing
@@ -154,12 +156,12 @@ public final class Shell {
             }
         }
     }
-    
+
     /**
      * Parses the parameters to an Point if possible.
      * 
      * @param tokenizedInput The full tokenized input, including command and
-     *        parameters.
+     *                       parameters.
      * @return An {@link Optional} containing the {@link Point} if parsing the
      *         parameters was successful.
      */
@@ -167,7 +169,7 @@ public final class Shell {
         if (hasEnoughParameters(tokenizedInput, 2)) {
             Optional<Integer> x = parseInt(tokenizedInput[1]);
             Optional<Integer> y = parseInt(tokenizedInput[2]);
-            
+
             if (x.isPresent() && y.isPresent()) {
                 return Optional.of(new Point(x.get(), y.get()));
             }
@@ -179,7 +181,7 @@ public final class Shell {
      * Checks if the input contains enough parameters. Prints an error message
      * if given less parameters than required.
      * 
-     * @param tokenizedInput The full input split in its tokens.
+     * @param tokenizedInput     The full input split in its tokens.
      * @param requiredParameters The amount of required parameters.
      * @return {@code true} if the input contains enough parameters.
      */
@@ -193,10 +195,10 @@ public final class Shell {
         }
         return true;
     }
-    
+
     /**
      * Tries to parse a String to an Integer.
-     *  
+     * 
      * @param value The String that should contain a numeric value.
      * @return An Optional containing the Integer if parsing was successful.
      */
@@ -208,18 +210,18 @@ public final class Shell {
             return Optional.empty();
         }
     }
-    
+
     /**
-     * Prints a help text about the usage of the Shell including all
-     * supported commands with their syntax and a description.
+     * Prints a help text about the usage of the Shell including all supported
+     * commands with their syntax and a description.
      */
     private static void printHelp() {
         System.out.println("");
     }
-    
+
     /**
-     * Prints an error text starting with {@code "Error!"} followed by the 
-     * given message.
+     * Prints an error text starting with {@code "Error!"} followed by the given
+     * message.
      * 
      * @param msg The message describing the error.
      */
