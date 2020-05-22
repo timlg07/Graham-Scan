@@ -22,6 +22,9 @@ public final class Shell {
      */
     private static boolean continueExecution = true;
     
+    /** The field storing all points and calculating the convex hull. */
+    private static Field field = new Field();
+    
     /** Private constructor to prevent instantiation. */
     private Shell() { }
     
