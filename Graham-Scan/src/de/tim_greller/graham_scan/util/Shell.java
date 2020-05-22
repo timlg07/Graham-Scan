@@ -118,7 +118,7 @@ public final class Shell {
      * @param tokenizedInput The full tokenized input, including command and
      *        parameters.
      * @return An {@link Optional} containing the {@link Point} if parsing the
-     *         parameters was successfull.
+     *         parameters was successful.
      */
     private static Optional<Point> parseParamsToPoint(String[] tokenizedInput) {
         if (hasEnoughParameters(tokenizedInput, 2)) {
@@ -175,10 +175,10 @@ public final class Shell {
     }
     
     /**
-     * Prints an error text accepted by the <i>Praktomat</i> containing the 
+     * Prints an error text starting with {@code "Error!"} and containing the 
      * given message.
      * 
-     * @param msg The message which should describe the error.
+     * @param msg The message describing the error.
      */
     private static void printError(String msg) {
         System.out.println("Error! " + msg);
