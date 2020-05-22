@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.tim_greller.graham_scan.model;
 
 /**
