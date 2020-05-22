@@ -96,7 +96,11 @@ public final class Shell {
         case "quit":
             continueExecution = false;
             break;
-
+            
+        case "print":
+            System.out.println(field);
+            break;
+            
         case "add":
             addPoint(tokenizedInput);
             break;
