@@ -145,7 +145,7 @@ public class Field {
      * @param stack The {@link Deque} whose second element should be returned.
      * @return The second element of {@code stack}.
      */
-    private <T> T peekNextToTop(Deque<T> stack) {
+    private static <T> T peekNextToTop(Deque<T> stack) {
         T head = stack.pop();
         T next = stack.peek();
         stack.push(head);
