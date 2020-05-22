@@ -55,4 +55,16 @@ gs> print
 [(-2, -1), (-2, 0), (0, 0), (1, 2), (2, -1), (2, 3)]
 gs> convex
 [(-2, -1), (2, -1), (2, 3), (-2, 0)]
+gs> new
+gs> add 1 1
+gs> add 2 1
+gs> convex
+[(1, 1), (2, 1)]
+gs> add 4 1
+gs> convex
+[(1, 1), (4, 1)]
+gs> add 3 1
+gs> add -1 1
+gs> convex
+[(-1, 1), (4, 1)]
 gs> quit
