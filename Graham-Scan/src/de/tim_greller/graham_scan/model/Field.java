@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  *
@@ -137,6 +138,14 @@ public class Field {
         return (LinkedList<Point>) stack;
     }
     
+    /**
+     * Returns the second element from the top of a {@link Deque} stack without 
+     * modifying it.
+     * 
+     * @param <T> The type of the elements stored in {@code stack}.
+     * @param stack The {@link Deque} whose second element should be returned.
+     * @return The second element of {@code stack}.
+     */
     private <T> T peekNextToTop(Deque<T> stack) {
         T head = stack.pop();
         T next = stack.peek();
