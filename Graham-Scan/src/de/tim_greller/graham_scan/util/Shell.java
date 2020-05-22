@@ -91,6 +91,44 @@ public final class Shell {
         }
     }
     
+    /**
+     * Parses the parameters to an Point if possible.
+     * 
+     * @param tokenizedInput The full tokenized input, including command and
+     *        parameters.
+     * @return An {@link Optional} containing the {@link Point} if parsing the
+     *         parameters was successfull.
+     */
+    private static Optional<Point> parseParamsToPoint(String[] tokenizedInput) {
+        if (hasEnoughParameters(tokenizedInput, 2)) {
+            Optional<Integer> x = parseInt(tokenizedInput[1]);
+            Optional<Integer> y = parseInt(tokenizedInput[2]);
+            
+            if (x.isPresent() && y.isPresent()) {
+                return Optional.of(new Point(x.get(), y.get()));
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Checks if the input contains enough parameters. Prints an error message
+     * if given less parameters than required.
+     * 
+     * @param tokenizedInput The full input split in its tokens.
+     * @param requiredParameters The amount of required parameters.
+     * @return {@code true} if the input contains enough parameters.
+     */
+    private static boolean hasEnoughParameters(String[] tokenizedInput, 
+            int requiredParameters) {
+        int givenParameters = tokenizedInput.length - 1 /* sub command token */;
+        if (givenParameters < requiredParameters) {
+            printError("Missing parameters. " + givenParameters 
+                       + " recieved, but " + requiredParameters + " required.");
+            return false;
+        }
+        return true;
+    }
     
     /**
      * Tries to parse a String to an Integer.
@@ -102,7 +140,7 @@ public final class Shell {
         try {
             return Optional.of(Integer.valueOf(value));
         } catch (NumberFormatException e) {
-            printError("The value has to be an integer.");
+            printError("The parameters have to be integers.");
             return Optional.empty();
         }
     }
