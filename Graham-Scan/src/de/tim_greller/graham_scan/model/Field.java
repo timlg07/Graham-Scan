@@ -75,7 +75,14 @@ public class Field {
      */
     public List<Point> convexHull() {
         if (!isConvexUpToDate) {
-            convex = grahamScan();
+            sortPoints();
+            // Trivial cases: The convex hull of 2 or less points are always the
+            // points themselves.
+            if (points.size() <= 2) {
+                convex = new ArrayList<Point>(points);
+            } else {
+                convex = grahamScan();
+            }
             isConvexUpToDate = true;
         }
         // Return a new list so the stored one cannot get modified.
@@ -84,19 +91,17 @@ public class Field {
     }
     
     /**
-     * Implementation of the graham scan algorithm.
+     * Implementation of the graham scan algorithm. <br>
+     * Preconditions: <ul>
+     *     <li>{@code points} contains at least 3 elements.</li>
+     *     <li>{@code isSorted} is {@code true}.</li>
+     * </ul>
      * 
      * @return The {@link Point}s forming the convex hull, starting with the
      *         {@link Point} furthest to the left and bottom and continuing 
      *         counter clockwise.
      */
     private List<Point> grahamScan() {
-        sortPoints();
-        
-        // The convex hull of 2 or less points are always the points themselves.
-        if (points.size() <= 2) {
-            return new ArrayList<Point>(points);
-        }
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
