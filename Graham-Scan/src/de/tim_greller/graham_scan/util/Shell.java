@@ -109,6 +109,10 @@ public final class Shell {
             removePoint(tokenizedInput);
             break;
             
+        case "convex":
+            System.out.println(field.convexHull());
+            break;
+            
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
