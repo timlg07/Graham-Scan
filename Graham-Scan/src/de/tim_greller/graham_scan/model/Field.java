@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  *
  */
@@ -92,6 +91,12 @@ public class Field {
      *         counter clockwise.
      */
     private List<Point> grahamScan() {
+        sortPoints();
+        
+        // The convex hull of 2 or less points are always the points themselves.
+        if (points.size() <= 2) {
+            return new ArrayList<Point>(points);
+        }
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
