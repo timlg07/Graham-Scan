@@ -2,6 +2,8 @@ package de.tim_greller.graham_scan.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -102,6 +104,43 @@ public class Field {
      *         counter clockwise.
      */
     private List<Point> grahamScan() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Points ordered by Angle and if necessary by distance relative to p0.
+        List<Point> orderedPoints = new ArrayList<Point>(points);
+        Point p0 = orderedPoints.remove(0);
+        Collections.sort(orderedPoints, new AngleDistComparator(p0));
+        
+        // List that does not contain two points collinear with p0.
+        List<Point> res = new LinkedList<Point>();
+        int lastIndex = orderedPoints.size() - 1;
+        for (int i = 0; i < lastIndex; i++) {
+            if (p0.leftOf(orderedPoints.get(i), orderedPoints.get(i + 1)) 
+                    != 0) {
+                res.add(orderedPoints.get(i));
+            }
+        }
+        // Last point is always included.
+        res.add(orderedPoints.get(lastIndex));
+        
+        // End result:
+        Deque<Point> stack = new LinkedList<Point>();
+        stack.push(p0);
+        
+        for (Point point : res) {
+            while (stack.size() > 1 
+                    && point.leftOf(stack.peek(), peekNextToTop(stack)) < 0) {
+                stack.pop();
+            }
+            stack.push(point);
+        }
+        
+        Collections.reverse((LinkedList<Point>) stack);
+        return (LinkedList<Point>) stack;
+    }
+    
+    private <T> T peekNextToTop(Deque<T> stack) {
+        T head = stack.pop();
+        T next = stack.peek();
+        stack.push(head);
+        return next;
     }
 }
