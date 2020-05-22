@@ -89,9 +89,26 @@ public final class Shell {
             field = new Field();
             break;
             
+        case "add":
+            addPoint(tokenizedInput);
+            break;
+            
         default:
             printError("Unknown command \"" + cmd + "\"");
             break;
+        }
+    }
+    
+    /**
+     * Tries to parse the input and if successful adds a new {@link Point} to 
+     * the field.
+     * 
+     * @param tokenizedInput The full input split in its tokens.
+     */
+    private static void addPoint(String[] tokenizedInput) {
+        Optional<Point> pointToAdd = parseParamsToPoint(tokenizedInput);
+        if (pointToAdd.isPresent()) {
+            field.add(pointToAdd.get());
         }
     }
     
