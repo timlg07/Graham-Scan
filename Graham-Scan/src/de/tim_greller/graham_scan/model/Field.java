@@ -78,15 +78,16 @@ public class Field {
     public List<Point> convexHull() {
         if (!isConvexUpToDate) {
             sortPoints();
-            // Trivial cases: The convex hull of 2 or less points are always the
-            // points themselves.
             if (points.size() <= 2) {
+                // Trivial cases: The convex hull of 2 or less points always
+                // consists of the points themselves.
                 convex = new ArrayList<Point>(points);
             } else {
                 convex = grahamScan();
             }
             isConvexUpToDate = true;
         }
+        
         // Return a new list so the stored one cannot get modified.
         // Using the Constructor is sufficient because each Point is immutable.
         return new ArrayList<Point>(convex);
