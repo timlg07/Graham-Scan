@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Optional;
 
+import de.tim_greller.graham_scan.model.Field;
+import de.tim_greller.graham_scan.model.Point;
+
 /**
  * 
  */
