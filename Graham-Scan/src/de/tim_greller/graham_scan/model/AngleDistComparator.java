@@ -47,7 +47,7 @@ public class AngleDistComparator implements Comparator<Point> {
      * @param b The second {@link Point}.
      * @return The magnitude of the vector from {@code a} to {@code b}.
      */
-    public double calculateDistance(Point a, Point b) {
+    private double calculateDistance(Point a, Point b) {
         int vectorX = b.getX() - a.getX();
         int vectorY = b.getY() - a.getY();
         return Math.sqrt(vectorX * vectorX + vectorY * vectorY);
