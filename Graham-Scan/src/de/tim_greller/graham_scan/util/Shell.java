@@ -9,7 +9,7 @@ import de.tim_greller.graham_scan.model.Field;
 import de.tim_greller.graham_scan.model.Point;
 
 /**
- * The graham scan shell enables direct user communication to perform operations 
+ * The graham scan shell enables direct user communication to perform operations
  * on a {@link Field} used to execute the graham scan with a set of points.
  */
 public final class Shell {
@@ -78,37 +78,34 @@ public final class Shell {
      * @param tokenizedInput The input containing command and parameters.
      */
     private static void executeCommand(String[] tokenizedInput) {
-        // The array is never empty, because spaces get removed by trim and
-        // splitting an empty string returns an array containing an empty
-        // string.
         String cmd = tokenizedInput[0].toLowerCase();
 
-        switch (cmd) {
-        case "new":
+        switch (cmd.charAt(0)) {
+        case 'n':
             field = new Field();
             break;
 
-        case "help":
+        case 'h':
             printHelp();
             break;
 
-        case "quit":
+        case 'q':
             continueExecution = false;
             break;
 
-        case "print":
+        case 'p':
             System.out.println(field);
             break;
 
-        case "add":
+        case 'a':
             addPoint(tokenizedInput);
             break;
 
-        case "remove":
+        case 'r':
             removePoint(tokenizedInput);
             break;
 
-        case "convex":
+        case 'c':
             System.out.println(field.convexHull());
             break;
 
