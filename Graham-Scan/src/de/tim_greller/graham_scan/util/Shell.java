@@ -213,7 +213,37 @@ public final class Shell {
      * commands with their syntax and a description.
      */
     private static void printHelp() {
-        System.out.println("");
+        System.out.println(
+              "The graham scan shell (gs) lets you dynamically specify a set of"
+            + " points in a two-dimensional integer coordinate system to "
+            + "calculate the convex hull of.\n\n"
+            
+            + "Available commands:\n"
+            
+            + "add    <x> <y>  Appends a new point with the integer coordinates"
+            + " x and y to the current set of points. Fails if the coordinates "
+            + "aren't valid integers or if such point already exists in the "
+            + "set.\n"
+            
+            + "remove <x> <y>  Removes the point with the integer coordinates x"
+            + " and y if it exists in the current set of points.\n"
+            
+            + "print   Prints the formatted string representation of the "
+            + "current set of points. The points are sorted by their x value "
+            + "(and if equal by y value).\n"
+            
+            + "convex  Calculates the convex hull of the current set of points "
+            + "using the graham scan algorithm. Prints the list of the points "
+            + "forming the convex hull starting with the leftmost point that "
+            + " has the lowest y value and continuing counter clockwise. \n"
+            
+            + "new     Creates a new empty set of points, deleting all "
+            + "previously added points.\n"
+            
+            + "help    Shows this help text.\n"
+            
+            + "quit    Exits the program.\n"
+        );
     }
 
     /**
