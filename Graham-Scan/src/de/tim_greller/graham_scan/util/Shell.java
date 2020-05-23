@@ -78,9 +78,6 @@ public final class Shell {
      * @param tokenizedInput The input containing command and parameters.
      */
     private static void executeCommand(String[] tokenizedInput) {
-        // The array is never empty, because spaces get removed by trim and
-        // splitting an empty string returns an array containing an empty
-        // string.
         String cmd = tokenizedInput[0].toLowerCase();
 
         switch (cmd) {
