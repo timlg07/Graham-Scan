@@ -77,4 +77,64 @@ gs> print
 [(1, 1), (1, 3), (2, 3), (3, 3), (4, 2)]
 gs> convex
 [(1, 1), (4, 2), (3, 3), (1, 3)]
+gs> new
+gs> add 1 -12433145434322
+Error! The parameters have to be integers.
+Enter 'help' to display the syntax.
+gs> add 1 2
+gs> add -5343 6
+gs> add 13 37
+gs> add 0 a 4
+Error! The parameters have to be integers.
+Enter 'help' to display the syntax.
+gs> add 5
+Error! Missing parameters. 1 recieved, but 2 required.
+Enter 'help' to display the syntax.
+gs> add 5,5
+Error! Missing parameters. 1 recieved, but 2 required.
+Enter 'help' to display the syntax.
+gs> add 5, 5
+Error! The parameters have to be integers.
+Enter 'help' to display the syntax.
+gs> remove 3
+Error! Missing parameters. 1 recieved, but 2 required.
+Enter 'help' to display the syntax.
+gs> remove 3 3
+Error! The Point (3, 3) was not found.
+Enter 'help' to display the syntax.
+gs> remove 1 2
+gs> remove 1 2
+Error! The Point (1, 2) was not found.
+Enter 'help' to display the syntax.
+gs> print
+[(-5343, 6), (13, 37)]
+gs> convex
+[(-5343, 6), (13, 37)]
+gs> add 0 0 //ignore additional arguments
+gs> add 0 +1
+gs> print
+[(-5343, 6), (0, 0), (0, 1), (13, 37)]
+gs> convex
+[(-5343, 6), (0, 0), (13, 37)]
+gs> new
+gs> convex
+[]
+gs> :q
+Error! Unknown command ":q"
+Enter 'help' to display the syntax.
+gs> exit
+Error! Unknown command "exit"
+Enter 'help' to display the syntax.
+gs> help
+The graham scan shell (gs) lets you dynamically specify a set of points in a two-dimensional integer coordinate system to calculate the convex hull of.
+
+Available commands:
+add    <x> <y>  Appends a new point with the integer coordinates x and y to the current set of points. Fails if the coordinates aren't valid integers or if such point already exists in the set.
+remove <x> <y>  Removes the point with the integer coordinates x and y if it exists in the current set of points.
+print   Prints the formatted string representation of the current set of points. The points are sorted by their x value (and if equal by y value).
+convex  Calculates the convex hull of the current set of points using the graham scan algorithm. Prints the list of the points forming the convex hull starting with the leftmost point that  has the lowest y value and continuing counter clockwise. 
+new     Creates a new empty set of points, deleting all previously added points.
+help    Shows this help text.
+quit    Exits the program.
+
 gs> quit
