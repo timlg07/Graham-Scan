@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * A Field can store {@link Point}s and calculate the convex hull of these.
  */
 public class Field {
 
@@ -17,7 +17,7 @@ public class Field {
     /** The last calculated convex hull */
     private List<Point> convex = new ArrayList<Point>();
 
-    /** Indicates if {@code points} has been modified since it was sorted. */
+    /** Indicates if the List {@code points} is sorted. */
     private boolean isSorted = true;
     
     /** 
@@ -49,7 +49,9 @@ public class Field {
         return points.remove(p);
     }
 
-    /** Sorts the field and returns its string representation. */
+    /** 
+     * Sorts the current set of points and returns its string representation. 
+     */
     @Override
     public String toString() {
         sortPoints();
