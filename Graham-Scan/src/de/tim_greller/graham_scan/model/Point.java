@@ -69,7 +69,7 @@ public class Point implements Comparable<Point> {
     }
 
     /**
-     * Calculates if the point {@code p} is Left of the vector from {@code this}
+     * Calculates if the point {@code p} is left of the vector from {@code this}
      * to {@code q}.
      * 
      * @param p The point which is either left, right or on the line.
