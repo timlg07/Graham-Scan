@@ -94,6 +94,7 @@ public final class Shell {
             break;
 
         case "print":
+            field.sortPoints();
             System.out.println(field);
             break;
 

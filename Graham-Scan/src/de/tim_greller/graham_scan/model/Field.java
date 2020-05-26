@@ -50,7 +50,7 @@ public class Field {
     }
 
     /** 
-     * Sorts the current set of points and returns its string representation. 
+     * Returns the string representation of the current set of points.
      */
     @Override
     public String toString() {
@@ -59,7 +59,7 @@ public class Field {
     }
 
     /** Sorts the points if they are not already sorted. */
-    private void sortPoints() {
+    public void sortPoints() {
         if (!isSorted) {
             Collections.sort(points);
             isSorted = true;
