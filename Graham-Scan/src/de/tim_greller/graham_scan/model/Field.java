@@ -49,9 +49,7 @@ public class Field {
         return points.remove(p);
     }
 
-    /** 
-     * Returns the string representation of the current set of points.
-     */
+    /** Returns the string representation of the current set of points. */
     @Override
     public String toString() {
         sortPoints();
