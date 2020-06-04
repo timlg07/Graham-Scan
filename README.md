@@ -21,3 +21,6 @@ gs> print
 gs> convex
 [(-2, -1), (2, -1), (2, 3), (-2, 0)]
 ```
+
+## The Algorithm
+For more details on how the Graham Scan works you can visit the explaination provided on the Wikipedia page [wikipedia.org/wiki/Graham_scan](https://en.wikipedia.org/wiki/Graham_scan)
