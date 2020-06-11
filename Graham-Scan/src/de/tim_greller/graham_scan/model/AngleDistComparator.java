@@ -35,7 +35,8 @@ public class AngleDistComparator implements Comparator<Point> {
         int result = reference.leftOf(p, q);
         if (result == 0) {
             // All points on one line -> Compare distance.
-            result = (int) (reference.distanceTo(p) - reference.distanceTo(q));
+            result = Double.compare(
+                            reference.distanceTo(p), reference.distanceTo(q));
         }
         return result;
     }
