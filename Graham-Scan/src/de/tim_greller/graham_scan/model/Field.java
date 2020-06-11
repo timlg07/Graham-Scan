@@ -11,13 +11,19 @@ import java.util.List;
  */
 public class Field {
 
-    /** The current set of points */
+    /** 
+     * The current set of points 
+     */
     private List<Point> points = new ArrayList<Point>();
 
-    /** The last calculated convex hull */
+    /** 
+     * The last calculated convex hull
+     */
     private List<Point> convex = new ArrayList<Point>();
 
-    /** Indicates if the List {@code points} is sorted. */
+    /** 
+     * Indicates if the List {@code points} is sorted.
+     */
     private boolean isSorted = true;
     
     /** 
@@ -49,14 +55,19 @@ public class Field {
         return points.remove(p);
     }
 
-    /** Returns the string representation of the current set of points. */
+    /** 
+     * Returns the string representation of the current set of points.
+     */
     @Override
     public String toString() {
         sortPoints();
         return points.toString();
     }
 
-    /** Sorts the points if they are not already sorted. */
+    /** 
+     * Sorts the points if they are not already sorted. After the execution of
+     * this method {@code isSorted} is always {@code true}.
+     */
     public void sortPoints() {
         if (!isSorted) {
             Collections.sort(points);
@@ -77,8 +88,8 @@ public class Field {
      */
     public List<Point> convexHull() {
         if (!isConvexUpToDate) {
-            sortPoints();
             if (points.size() <= 2) {
+                sortPoints();
                 // Trivial cases: The convex hull of 2 or less points always
                 // consists of the points themselves.
                 convex = new ArrayList<Point>(points);
@@ -95,19 +106,17 @@ public class Field {
 
     /**
      * Implementation of the graham scan algorithm. <br>
-     * Preconditions: <ul>
-     *     <li>{@code points} contains at least 3 elements.</li>
-     *     <li>{@code isSorted} is {@code true}.</li>
-     * </ul>
+     * Precondition: {@code points} contains at least 3 elements.
      * 
      * @return The {@link Point}s forming the convex hull, starting with the
      *         {@link Point} furthest to the left and bottom and continuing 
      *         counter clockwise.
      */
     private List<Point> grahamScan() {
-        // Points ordered by Angle and if necessary by distance relative to p0.
+        // Points ordered by angle and if necessary by distance relative to p0.
         List<Point> orderedPoints = new ArrayList<Point>(points);
-        Point p0 = orderedPoints.remove(0);
+        Point p0 = Collections.min(orderedPoints);
+        orderedPoints.remove(p0);
         Collections.sort(orderedPoints, new AngleDistComparator(p0));
 
         // List that does not contain two points collinear with p0.

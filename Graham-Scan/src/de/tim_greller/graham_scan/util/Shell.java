@@ -14,18 +14,15 @@ import de.tim_greller.graham_scan.model.Point;
  */
 public final class Shell {
 
-    /**
-     * Holds the current information about whether the program should continue
-     * execution or terminate after the current line of input is processed.
+    /** 
+     * The field storing all points and calculating the convex hull. 
      */
-    private static boolean continueExecution = true;
-
-    /** The field storing all points and calculating the convex hull. */
     private static Field field = new Field();
 
-    /** Private constructor to prevent instantiation. */
+    /** 
+     * Private constructor to prevent instantiation. 
+     */
     private Shell() { }
-    
 
     /**
      * The main method processes the input received on System.in (standard 
@@ -35,14 +32,15 @@ public final class Shell {
      * @throws IOException If an I/O error occurs.
      */
     public static void main(String[] args) throws IOException {
-        BufferedReader stdin = new BufferedReader(
-                new InputStreamReader(System.in));
-
+        BufferedReader stdin 
+                = new BufferedReader(new InputStreamReader(System.in));
+        boolean continueExecution = true;
+        
         while (continueExecution) {
-            processLine(stdin);
+            System.out.print("gs> ");
+            String input = stdin.readLine();
+            continueExecution = processLine(input);
         }
-
-        stdin.close();
     }
 
     /**
@@ -51,33 +49,30 @@ public final class Shell {
      * Performs no operation for blank lines.
      * 
      * @param stdin The BufferedReader for the standard input stream.
-     * @throws IOException If an I/O error occurs.
+     * @return whether the program should continue execution or terminate after 
+     *         the current line of input is processed.
      */
-    private static void processLine(BufferedReader stdin) throws IOException {
-        System.out.print("gs> ");
-        String input = stdin.readLine();
-
-        // exit program if EOF (end of file) is reached
-        if (input == null) {
-            continueExecution = false;
-            return;
+    private static boolean processLine(String line) {
+        if (line == null) {
+            // exit program if EOF (end of file) is reached
+            return false;
+        } else if (line.isBlank()) {
+            // show the prompt again if no input was given
+            return true;
         }
 
-        // show the prompt again if no input was given
-        if (input.isBlank()) {
-            return;
-        }
-
-        String[] tokenizedInput = input.trim().split("\\s+");
-        executeCommand(tokenizedInput);
+        String[] tokenizedInput = line.trim().split("\\s+");
+        return executeCommand(tokenizedInput);
     }
 
     /**
      * If the first token of the input is a valid command, it gets executed.
      * 
      * @param tokenizedInput The input containing command and parameters.
+     * @return whether the program should continue execution or terminate after 
+     *         the current command was executed.
      */
-    private static void executeCommand(String[] tokenizedInput) {
+    private static boolean executeCommand(String[] tokenizedInput) {
         String cmd = tokenizedInput[0].toLowerCase();
 
         switch (cmd) {
@@ -90,8 +85,7 @@ public final class Shell {
             break;
 
         case "quit":
-            continueExecution = false;
-            break;
+            return false;
 
         case "print":
             field.sortPoints();
@@ -114,6 +108,8 @@ public final class Shell {
             printError("Unknown command \"" + cmd + "\"");
             break;
         }
+        
+        return true;
     }
 
     /**
@@ -162,8 +158,8 @@ public final class Shell {
      */
     private static Optional<Point> parseParamsToPoint(String[] tokenizedInput) {
         if (hasEnoughParameters(tokenizedInput, 2)) {
-            Optional<Integer> x = parseInt(tokenizedInput[1]);
-            Optional<Integer> y = parseInt(tokenizedInput[2]);
+            Optional<Integer> x = parseInt(tokenizedInput[1], "x");
+            Optional<Integer> y = parseInt(tokenizedInput[2], "y");
 
             if (x.isPresent() && y.isPresent()) {
                 return Optional.of(new Point(x.get(), y.get()));
@@ -187,21 +183,23 @@ public final class Shell {
             printError("Missing parameters. " + givenParameters 
                        + " recieved, but " + requiredParameters + " required.");
             return false;
+        } else {
+            return true;
         }
-        return true;
     }
 
     /**
      * Tries to parse a String to an Integer.
      * 
      * @param value The String that should contain a numeric value.
+     * @param paramName The name of the parameter which should be parsed.
      * @return An Optional containing the Integer if parsing was successful.
      */
-    private static Optional<Integer> parseInt(String value) {
+    private static Optional<Integer> parseInt(String value, String paramName) {
         try {
             return Optional.of(Integer.valueOf(value));
         } catch (NumberFormatException e) {
-            printError("The parameters have to be integers.");
+            printError("The parameter " + paramName + " has to be an integer.");
             return Optional.empty();
         }
     }
@@ -252,6 +250,5 @@ public final class Shell {
      */
     private static void printError(String msg) {
         System.out.println("Error! " + msg);
-        System.out.println("Enter 'help' to display the syntax.");
     }
 }

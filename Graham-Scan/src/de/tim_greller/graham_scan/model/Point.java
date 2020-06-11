@@ -5,8 +5,15 @@ package de.tim_greller.graham_scan.model;
  */
 public class Point implements Comparable<Point> {
 
-    /** The x and y coordinates of the point. */
-    private int x, y;
+    /** 
+     * The x coordinate of the point. 
+     */
+    private int x;
+    
+    /** 
+     * The y coordinate of the point. 
+     */
+    private int y;
 
     /**
      * Creates a new Point with the given position.
@@ -37,6 +44,11 @@ public class Point implements Comparable<Point> {
         return y;
     }
 
+    /** 
+     * <p>Compares two points using the x values first and if they are equal
+     * comparing their y values.</p> 
+     * {@inheritDoc} 
+     */
     @Override
     public int compareTo(Point p) {
         int deltaX = getX() - p.getX();
@@ -47,13 +59,18 @@ public class Point implements Comparable<Point> {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * <p>Two points are equal if both x and both y values are equal.</p>
+     *  {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         return o instanceof Point && compareTo((Point) o) == 0;
     }
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc} 
+     */
     @Override
     public int hashCode() {
         // Avoid losing information due to overflow while still using shifts for
@@ -62,7 +79,9 @@ public class Point implements Comparable<Point> {
         return (prime + x) * prime + y;
     }
 
-    /** Generates the string representation in the format {@code (x, y)}. */
+    /** 
+     * Generates the string representation in the format {@code (x, y)}. 
+     */
     @Override
     public String toString() {
         return "(" + getX() + ", " + getY() + ")";
