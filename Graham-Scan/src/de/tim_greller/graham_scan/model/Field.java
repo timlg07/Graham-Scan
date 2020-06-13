@@ -60,7 +60,6 @@ public class Field {
      */
     @Override
     public String toString() {
-        sortPoints();
         return points.toString();
     }
 
